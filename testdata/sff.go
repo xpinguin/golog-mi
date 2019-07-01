@@ -16,9 +16,10 @@ func Square(A int) (R int) {
 	return
 }
 
-//XXX: ssa/interp.Interpret panics upon empty `init`'s body
+//XXX: ssa/interp.Interpret panics upon an empty `init`'s body
 func init() {
-	fmt.Println("from init()")
+	const Accu = 10
+	fmt.Println("Square(", Accu, ") =", Square(Accu))
 }
 
 func main() {
