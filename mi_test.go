@@ -183,7 +183,7 @@ func testFuncs(t *testing.T, pkg *ssa.Package, funcRef ...string) {
 	}
 }
 
-func testTrivialInterpreter(t *testing.T) {
+func TestTrivial(t *testing.T) {
 	ssapkg, pkg := util.BuildPkg("sff", SFF)
 	if pkg.Name() != "main" {
 		t.Errorf("pkg.Name() = %s, want main", pkg.Name())
