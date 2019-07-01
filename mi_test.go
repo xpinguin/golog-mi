@@ -206,7 +206,7 @@ func testFuncs(t *testing.T, pkg *ssa.Package, funcRef ...string) {
 	}
 }
 
-func TestTrivialInterpreter(t *testing.T) {
+func testTrivialInterpreter(t *testing.T) {
 	ssapkg, pkg := util.BuildPkg("sff", SFF)
 	if pkg.Name() != "main" {
 		t.Errorf("pkg.Name() = %s, want main", pkg.Name())
@@ -224,17 +224,4 @@ func TestSSAInterp(t *testing.T) {
 	if !run(t, filepath.Join(cwd, "testdata", "sff.go")) {
 		t.Fail()
 	}
-
-	/*ssapkg, pkg := util.BuildPkg("main", SFF)
-	if pkg.Name() != "main" {
-		t.Errorf("pkg.Name() = %s, want main", pkg.Name())
-	}
-
-	spew.Dump(ssapkg.Pkg.Imports())
-
-	////////////
-	ret := interp.Interpret(ssapkg, interp.EnableTracing, &types.StdSizes{WordSize: 8, MaxAlign: 8}, "main", []string{"sff_interp"})
-	fmt.Println("----------------")
-	fmt.Println(ret)
-	////////////*/
 }
