@@ -12,17 +12,15 @@ import (
 	"testing"
 
 	"golang.org/x/tools/go/loader"
+	"golang.org/x/tools/go/ssa"
 	"golang.org/x/tools/go/ssa/interp"
 	"golang.org/x/tools/go/ssa/ssautil"
-
-	"golang.org/x/tools/go/ssa"
 
 	"github.com/iancoleman/strcase"
 	"github.com/mndrix/golog/read"
 	"github.com/mndrix/golog/term"
-	"github.com/xpinguin/golog-mi/util"
 
-	"github.com/leveltravel/dynpkg/util/meta"
+	"github.com/xpinguin/golog-mi/util"
 )
 
 /////////////////////////////
@@ -158,13 +156,13 @@ func testFuncs(t *testing.T, pkg *ssa.Package, funcRef ...string) {
 					unks = append(unks, pair)
 				}
 				fmt.Println(
-					meta.Fntr_("func_info",
+					Fntr_("func_info",
 						util.RelMethodName(f, f.Pkg),
 						term.SliceToList([]Term{
-							meta.Fntr_("blocks", len(f.Blocks)),
-							meta.Fntr_("name", funcInfo.Name),
-							meta.Fntr_("pkg", funcInfo.Pkg),
-							meta.Fntr_("src", funcInfo.SrcLoc),
+							Fntr_("blocks", len(f.Blocks)),
+							Fntr_("name", funcInfo.Name),
+							Fntr_("pkg", funcInfo.Pkg),
+							Fntr_("src", funcInfo.SrcLoc),
 						}),
 						term.SliceToList(unks),
 					).String() + ".")
@@ -172,7 +170,7 @@ func testFuncs(t *testing.T, pkg *ssa.Package, funcRef ...string) {
 			f.WriteTo(os.Stdout)
 			fmt.Print("%% ==================================\n")
 			////
-			_ = meta.FunctionTerm(f, nil)
+			_ = FunctionTerm(f, nil)
 			//fmt.Print("==================================\n")
 			fmt.Print("%% ==================================\n\n")
 		}
@@ -186,7 +184,7 @@ func testFuncs(t *testing.T, pkg *ssa.Package, funcRef ...string) {
 func TestTrivial(t *testing.T) {
 	ssapkg, pkg := util.BuildPkg("sff", SFF)
 	if pkg.Name() != "main" {
-		t.Errorf("pkg.Name() = %s, want main", pkg.Name())
+		t.Errorf("pkg.Name() = %s, \\ main", pkg.Name())
 	}
 
 	testFuncs(t, ssapkg, "Square")
