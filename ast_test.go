@@ -24,29 +24,26 @@ func TestInspectAST(t *testing.T) {
 		case *ast.File:
 			return true
 
-		////////////////
 		case *ast.TypeSpec:
 			//spew.Dump(x)
 			return false
+		////////////////
 		case ast.Spec:
 
-		//////////////
 		case *ast.FuncDecl:
-			if id := x.Name; id != nil && strings.HasPrefix(id.Name, "Square") {
-				spew.Dump(x)
+			if id := x.Name; id != nil {
+				if strings.HasPrefix(id.Name, "Square") {
+					spew.Dump(x)
+				}
 			}
 			return false
+		////////////////
 		case ast.Decl:
 			//spew.Dump(x)
 			return false
 
-		////////////////
 		case ast.Stmt:
-
-		////////////////
 		case ast.Expr:
-
-		////////////////
 		default:
 			fmt.Println("\n==========\n==========")
 			//ast.Print(fset, n)
@@ -55,6 +52,6 @@ func TestInspectAST(t *testing.T) {
 			fmt.Print("=====================.\n\n")
 			return false
 		}
-		return false // XXX: temporary search-space limiter, to be removed
+		return false // XXX: temporary search-space limiter
 	})
 }
