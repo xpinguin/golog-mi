@@ -13,7 +13,7 @@ import (
 
 func TestInspectAST(t *testing.T) {
 	fset := token.NewFileSet()
-	f, _ := parser.ParseFile(fset, "testdata/squares.go", nil, parser.Trace|parser.ParseComments)
+	f, _ := parser.ParseFile(fset, "testdata/squares.go", nil, parser.Trace /*|parser.ParseComments*/)
 
 	//inspect := inspector.New([]*ast.File{f})
 	ast.Inspect(f, func(n ast.Node) bool {
@@ -26,7 +26,6 @@ func TestInspectAST(t *testing.T) {
 
 		case *ast.TypeSpec:
 			//spew.Dump(x)
-			return false
 		////////////////
 		case ast.Spec:
 
@@ -36,11 +35,9 @@ func TestInspectAST(t *testing.T) {
 					spew.Dump(x)
 				}
 			}
-			return false
 		////////////////
 		case ast.Decl:
 			//spew.Dump(x)
-			return false
 
 		case ast.Stmt:
 		case ast.Expr:
@@ -50,7 +47,6 @@ func TestInspectAST(t *testing.T) {
 			fmt.Println("-------------")
 			//spew.Dump(x)
 			fmt.Print("=====================.\n\n")
-			return false
 		}
 		return false // XXX: temporary search-space limiter
 	})
