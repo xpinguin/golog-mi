@@ -8,12 +8,12 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/davecgh/go-spew/spew"
+	"github.com/xpinguin/golog-mi/ext/go/ast2"
 )
 
 func TestInspectAST(t *testing.T) {
 	fset := token.NewFileSet()
-	f, _ := parser.ParseFile(fset, "testdata/squares.go", nil, parser.Trace /*|parser.ParseComments*/)
+	f, _ := parser.ParseFile(fset, "testdata/squares.go", nil, 0 /*parser.Trace | parser.ParseComments*/)
 
 	//inspect := inspector.New([]*ast.File{f})
 	ast.Inspect(f, func(n ast.Node) bool {
@@ -32,7 +32,8 @@ func TestInspectAST(t *testing.T) {
 		case *ast.FuncDecl:
 			if id := x.Name; id != nil {
 				if strings.HasPrefix(id.Name, "Square") {
-					spew.Dump(x)
+					ast2.Print(fset, n)
+					//spew.Dump(x)
 				}
 			}
 		////////////////
@@ -43,7 +44,7 @@ func TestInspectAST(t *testing.T) {
 		case ast.Expr:
 		default:
 			fmt.Println("\n==========\n==========")
-			//ast.Print(fset, n)
+			//ast2.Print(fset, n)
 			fmt.Println("-------------")
 			//spew.Dump(x)
 			fmt.Print("=====================.\n\n")
