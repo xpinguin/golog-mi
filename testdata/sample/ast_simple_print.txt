@@ -1,137 +1,136 @@
- 0  *ast.FuncDecl
- 1  . Name: *ast.Ident
- 2  . . NamePos: testdata/squares.go:141:6
- 3  . . Name: "Square2"
- 4  . . Obj: *ast.Object
- 5  . . . Kind: func
- 6  . . . Name: "Square2"
- 7  . . . Decl: *(obj @ 0)
- 8  . Type: *ast.FuncType
- 9  . . Func: testdata/squares.go:141:1
-10  . . Params: *ast.FieldList
-11  . . . Opening: testdata/squares.go:141:13
-12  . . . List: []*ast.Field.len[1]
-13  . . . . 0: *ast.Field
-14  . . . . . Names: []*ast.Ident.len[1]
-15  . . . . . . 0: *ast.Ident
-16  . . . . . . . NamePos: testdata/squares.go:141:14
-17  . . . . . . . Name: "A"
-18  . . . . . . . Obj: *ast.Object
-19  . . . . . . . . Kind: var
-20  . . . . . . . . Name: "A"
-21  . . . . . . . . Decl: *(obj @ 13)
-22  . . . . . Type: *ast.Ident
-23  . . . . . . NamePos: testdata/squares.go:141:16
-24  . . . . . . Name: "int"
-25  . . . Closing: testdata/squares.go:141:19
-26  . . Results: *ast.FieldList
-27  . . . Opening: testdata/squares.go:141:21
-28  . . . List: []*ast.Field.len[1]
-29  . . . . 0: *ast.Field
-30  . . . . . Names: []*ast.Ident.len[1]
-31  . . . . . . 0: *ast.Ident
-32  . . . . . . . NamePos: testdata/squares.go:141:22
-33  . . . . . . . Name: "R"
-34  . . . . . . . Obj: *ast.Object
-35  . . . . . . . . Kind: var
-36  . . . . . . . . Name: "R"
-37  . . . . . . . . Decl: *(obj @ 29)
-38  . . . . . Type: *ast.Ident
-39  . . . . . . NamePos: testdata/squares.go:141:24
-40  . . . . . . Name: "int"
-41  . . . Closing: testdata/squares.go:141:27
-42  . Body: *ast.BlockStmt
-43  . . Lbrace: testdata/squares.go:141:29
-44  . . List: []ast.Stmt.len[4]
-45  . . . 0: *ast.AssignStmt
-46  . . . . Lhs: []ast.Expr.len[1]
-47  . . . . . 0: *ast.Ident
-48  . . . . . . NamePos: testdata/squares.go:142:2
-49  . . . . . . Name: "factor"
-50  . . . . . . Obj: *ast.Object
-51  . . . . . . . Kind: var
-52  . . . . . . . Name: "factor"
-53  . . . . . . . Decl: *(obj @ 45)
-54  . . . . TokPos: testdata/squares.go:142:9
-55  . . . . Tok: :=
-56  . . . . Rhs: []ast.Expr.len[1]
-57  . . . . . 0: *ast.BasicLit
-58  . . . . . . ValuePos: testdata/squares.go:142:12
-59  . . . . . . Kind: INT
-60  . . . . . . Value: "1"
-61  . . . 1: *ast.AssignStmt
-62  . . . . Lhs: []ast.Expr.len[1]
-63  . . . . . 0: *ast.Ident
-64  . . . . . . NamePos: testdata/squares.go:143:2
-65  . . . . . . Name: "ind"
-66  . . . . . . Obj: *ast.Object
-67  . . . . . . . Kind: var
-68  . . . . . . . Name: "ind"
-69  . . . . . . . Decl: *(obj @ 61)
-
-70  . . . . TokPos: testdata/squares.go:143:6
-71  . . . . Tok: :=
-72  . . . . Rhs: []ast.Expr.len[1]
-73  . . . . . 0: *ast.Ident
-74  . . . . . . NamePos: testdata/squares.go:143:9
-75  . . . . . . Name: "A"
-76  . . . . . . Obj: *(obj @ 18)
-77  . . . 2: *ast.ForStmt
-78  . . . . For: testdata/squares.go:144:2
-79  . . . . Cond: *ast.BinaryExpr
-80  . . . . . X: *ast.Ident
-81  . . . . . . NamePos: testdata/squares.go:144:6
-82  . . . . . . Name: "ind"
-83  . . . . . . Obj: *(obj @ 66)
-84  . . . . . OpPos: testdata/squares.go:144:10
-85  . . . . . Op: !=
-86  . . . . . Y: *ast.BasicLit
-87  . . . . . . ValuePos: testdata/squares.go:144:13
-88  . . . . . . Kind: INT
-89  . . . . . . Value: "0"
-90  . . . . Body: *ast.BlockStmt
-91  . . . . . Lbrace: testdata/squares.go:144:15
-92  . . . . . List: []ast.Stmt.len[3]
-93  . . . . . . 0: *ast.AssignStmt
-94  . . . . . . . Lhs: []ast.Expr.len[1]
-95  . . . . . . . . 0: *ast.Ident
-96  . . . . . . . . . NamePos: testdata/squares.go:145:3
-97  . . . . . . . . . Name: "R"
-98  . . . . . . . . . Obj: *(obj @ 34)
-99  . . . . . . . TokPos: testdata/squares.go:145:5
-100  . . . . . . . Tok: +=
-101  . . . . . . . Rhs: []ast.Expr.len[1]
-102  . . . . . . . . 0: *ast.Ident
-103  . . . . . . . . . NamePos: testdata/squares.go:145:8
-104  . . . . . . . . . Name: "factor"
-105  . . . . . . . . . Obj: *(obj @ 50)
-106  . . . . . . 1: *ast.AssignStmt
-107  . . . . . . . Lhs: []ast.Expr.len[1]
-108  . . . . . . . . 0: *ast.Ident
-109  . . . . . . . . . NamePos: testdata/squares.go:146:3
-110  . . . . . . . . . Name: "factor"
-111  . . . . . . . . . Obj: *(obj @ 50)
-112  . . . . . . . TokPos: testdata/squares.go:146:10
-113  . . . . . . . Tok: +=
-114  . . . . . . . Rhs: []ast.Expr.len[1]
-115  . . . . . . . . 0: *ast.BasicLit
-116  . . . . . . . . . ValuePos: testdata/squares.go:146:13
-117  . . . . . . . . . Kind: INT
-118  . . . . . . . . . Value: "2"
-119  . . . . . . 2: *ast.AssignStmt
-120  . . . . . . . Lhs: []ast.Expr.len[1]
-121  . . . . . . . . 0: *ast.Ident
-122  . . . . . . . . . NamePos: testdata/squares.go:147:3
-123  . . . . . . . . . Name: "ind"
-124  . . . . . . . . . Obj: *(obj @ 66)
-125  . . . . . . . TokPos: testdata/squares.go:147:7
-126  . . . . . . . Tok: -=
-127  . . . . . . . Rhs: []ast.Expr.len[1]
-128  . . . . . . . . 0: *ast.BasicLit
-129  . . . . . . . . . ValuePos: testdata/squares.go:147:10
-130  . . . . . . . . . Kind: INT
-131  . . . . . . . . . Value: "1"
-132  . . . . . Rbrace: testdata/squares.go:148:2
-133  . . . 3: *ast.ReturnStmt
-134  . . . . Return: testdata/squares.go:149:2
-135  . . Rbrace: testdata/squares.go:150:1
+*ast.FuncDecl
+. Name: *ast.Ident
+. . NamePos: testdata/squares.go:141:6
+. . Name: "Square2"
+. . Obj: *ast.Object
+. . . Kind: func
+. . . Name: "Square2"
+. . . Decl: *(obj @ 0)
+. Type: *ast.FuncType
+. . Func: testdata/squares.go:141:1
+. . Params: *ast.FieldList
+. . . Opening: testdata/squares.go:141:13
+. . . List: []*ast.Field.len[1]
+. . . . 0: *ast.Field
+. . . . . Names: []*ast.Ident.len[1]
+. . . . . . 0: *ast.Ident
+. . . . . . . NamePos: testdata/squares.go:141:14
+. . . . . . . Name: "A"
+. . . . . . . Obj: *ast.Object
+. . . . . . . . Kind: var
+. . . . . . . . Name: "A"
+. . . . . . . . Decl: *(obj @ 13)
+. . . . . Type: *ast.Ident
+. . . . . . NamePos: testdata/squares.go:141:16
+. . . . . . Name: "int"
+. . . Closing: testdata/squares.go:141:19
+. . Results: *ast.FieldList
+. . . Opening: testdata/squares.go:141:21
+. . . List: []*ast.Field.len[1]
+. . . . 0: *ast.Field
+. . . . . Names: []*ast.Ident.len[1]
+. . . . . . 0: *ast.Ident
+. . . . . . . NamePos: testdata/squares.go:141:22
+. . . . . . . Name: "R"
+. . . . . . . Obj: *ast.Object
+. . . . . . . . Kind: var
+. . . . . . . . Name: "R"
+. . . . . . . . Decl: *(obj @ 29)
+. . . . . Type: *ast.Ident
+. . . . . . NamePos: testdata/squares.go:141:24
+. . . . . . Name: "int"
+. . . Closing: testdata/squares.go:141:27
+. Body: *ast.BlockStmt
+. . Lbrace: testdata/squares.go:141:29
+. . List: []ast.Stmt.len[4]
+. . . 0: *ast.AssignStmt
+. . . . Lhs: []ast.Expr.len[1]
+. . . . . 0: *ast.Ident
+. . . . . . NamePos: testdata/squares.go:142:2
+. . . . . . Name: "factor"
+. . . . . . Obj: *ast.Object
+. . . . . . . Kind: var
+. . . . . . . Name: "factor"
+. . . . . . . Decl: *(obj @ 45)
+. . . . TokPos: testdata/squares.go:142:9
+. . . . Tok: :=
+. . . . Rhs: []ast.Expr.len[1]
+. . . . . 0: *ast.BasicLit
+. . . . . . ValuePos: testdata/squares.go:142:12
+. . . . . . Kind: INT
+. . . . . . Value: "1"
+. . . 1: *ast.AssignStmt
+. . . . Lhs: []ast.Expr.len[1]
+. . . . . 0: *ast.Ident
+. . . . . . NamePos: testdata/squares.go:143:2
+. . . . . . Name: "ind"
+. . . . . . Obj: *ast.Object
+. . . . . . . Kind: var
+. . . . . . . Name: "ind"
+. . . . . . . Decl: *(obj @ 61)
+. . . . TokPos: testdata/squares.go:143:6
+. . . . Tok: :=
+. . . . Rhs: []ast.Expr.len[1]
+. . . . . 0: *ast.Ident
+. . . . . . NamePos: testdata/squares.go:143:9
+. . . . . . Name: "A"
+. . . . . . Obj: *(obj @ 18)
+. . . 2: *ast.ForStmt
+. . . . For: testdata/squares.go:144:2
+. . . . Cond: *ast.BinaryExpr
+. . . . . X: *ast.Ident
+. . . . . . NamePos: testdata/squares.go:144:6
+. . . . . . Name: "ind"
+. . . . . . Obj: *(obj @ 66)
+. . . . . OpPos: testdata/squares.go:144:10
+. . . . . Op: !=
+. . . . . Y: *ast.BasicLit
+. . . . . . ValuePos: testdata/squares.go:144:13
+. . . . . . Kind: INT
+. . . . . . Value: "0"
+. . . . Body: *ast.BlockStmt
+. . . . . Lbrace: testdata/squares.go:144:15
+. . . . . List: []ast.Stmt.len[3]
+. . . . . . 0: *ast.AssignStmt
+. . . . . . . Lhs: []ast.Expr.len[1]
+. . . . . . . . 0: *ast.Ident
+. . . . . . . . . NamePos: testdata/squares.go:145:3
+. . . . . . . . . Name: "R"
+. . . . . . . . . Obj: *(obj @ 34)
+. . . . . . . TokPos: testdata/squares.go:145:5
+. . . . . . . Tok: +=
+. . . . . . . Rhs: []ast.Expr.len[1]
+. . . . . . . . 0: *ast.Ident
+. . . . . . . . . NamePos: testdata/squares.go:145:8
+. . . . . . . . . Name: "factor"
+. . . . . . . . . Obj: *(obj @ 50)
+. . . . . . 1: *ast.AssignStmt
+. . . . . . . Lhs: []ast.Expr.len[1]
+. . . . . . . . 0: *ast.Ident
+. . . . . . . . . NamePos: testdata/squares.go:146:3
+. . . . . . . . . Name: "factor"
+. . . . . . . . . Obj: *(obj @ 50)
+. . . . . . . TokPos: testdata/squares.go:146:10
+. . . . . . . Tok: +=
+. . . . . . . Rhs: []ast.Expr.len[1]
+. . . . . . . . 0: *ast.BasicLit
+. . . . . . . . . ValuePos: testdata/squares.go:146:13
+. . . . . . . . . Kind: INT
+. . . . . . . . . Value: "2"
+. . . . . . 2: *ast.AssignStmt
+. . . . . . . Lhs: []ast.Expr.len[1]
+. . . . . . . . 0: *ast.Ident
+. . . . . . . . . NamePos: testdata/squares.go:147:3
+. . . . . . . . . Name: "ind"
+. . . . . . . . . Obj: *(obj @ 66)
+. . . . . . . TokPos: testdata/squares.go:147:7
+. . . . . . . Tok: -=
+. . . . . . . Rhs: []ast.Expr.len[1]
+. . . . . . . . 0: *ast.BasicLit
+. . . . . . . . . ValuePos: testdata/squares.go:147:10
+. . . . . . . . . Kind: INT
+. . . . . . . . . Value: "1"
+. . . . . Rbrace: testdata/squares.go:148:2
+. . . 3: *ast.ReturnStmt
+. . . . Return: testdata/squares.go:149:2
+. . Rbrace: testdata/squares.go:150:1
