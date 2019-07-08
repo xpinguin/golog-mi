@@ -1,0 +1,32 @@
+:- encoding(utf8).
+
+ast_terms(squares, 
+[file, [main],
+  [gen_decl, [import_spec, [string(fmt)]]],
+  [func_decl, [id('Square2')],
+    [func_type,
+    	[field_list, [field, [id('A')], [int]]],
+      	[field_list, [field, [id('R')], [int]]]],
+    [block_stmt,
+    	[assign_stmt(:=), [id(factor)], [int(1)]],
+      	[assign_stmt(:=), [id(ind)], [id('A')]],
+      	[for_stmt, ['!=', [id(ind)], [int(0)]],
+        	[block_stmt,
+        		[assign_stmt(+=), [id('R')], [id(factor)]],
+        		[assign_stmt(+=), [id(factor)], [int(2)]],
+        		[assign_stmt(-=), [id(ind)], [int(1)]]]],
+      	[return_stmt]]],
+
+  [func_decl, [init],
+    [func_type, [field_list]],
+    [block_stmt,
+    	[decl_stmt, [gen_decl, [value_spec,
+    		[id('Accu')], [int(10)]]]],
+        [expr_stmt, [call_expr, 
+        	[selector_expr,[fmt],['Println']],
+        		[string('Square(')],
+        		[id('Accu')],
+        		[string(') =')],
+        		[call_expr,
+        			[id('Square2')], [id('Accu')]]]]]]
+]).
