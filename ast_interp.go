@@ -128,14 +128,15 @@ func ProgramToTerms(mainPkg string, outDir string) (fileTermsTrails map[string][
 	for fname, trail := range fileTermsTrails {
 		mname := term.NewAtom(fname).String()
 		preamble := []string{
-			`:- encoding(utf8).` + "\n",
-			`:- module(` + mname + `, [program/2]).` + "\n\n",
+			`:- encoding(utf8).`,
+			`:- module(` + mname + `, [program/2]).`,
 		}
-		trail = append(preamble, trail...)
+
 		ioutil.WriteFile(
 			strings.TrimRight(outDir, "/")+"/"+fname+".pl",
 			[]byte(
-				"program("+mname+",\n"+
+				strings.Join(preamble, "\n")+"\n"+
+					"program("+mname+",\n"+
 					strings.Join(trail, "")+
 					"\n)."),
 			os.ModePerm)
