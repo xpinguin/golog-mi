@@ -83,9 +83,9 @@ func FileToTerms(f *ast.File, fset *token.FileSet) (termsTrail []string) {
 		ctr++
 		return true
 	})
-	/*if len(trail) > 0 && strings.TrimSpace(trail[len(trail)-1]) == "," {
-		trail[len(trail)-1] = "."
-	}*/
+	if len(trail) > 0 && strings.TrimSpace(trail[len(trail)-1]) == "," {
+		trail = trail[0 : len(trail)-1]
+	}
 
 	//fmt.Printf("\nD: %d ;; CTR: %d\n\n", depth, ctr)
 	return trail
@@ -135,7 +135,7 @@ func ProgramToTerms(mainPkg string, outDir string) (fileTermsTrails map[string][
 		ioutil.WriteFile(
 			strings.TrimRight(outDir, "/")+"/"+fname+".pl",
 			[]byte(
-				strings.Join(preamble, "\n")+"\n"+
+				strings.Join(preamble, "\n")+"\n\n"+
 					"program("+mname+",\n"+
 					strings.Join(trail, "")+
 					"\n)."),
