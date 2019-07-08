@@ -3,7 +3,6 @@ package util
 import (
 	"bytes"
 	"go/ast"
-	"go/build"
 	"go/importer"
 	"go/parser"
 	"go/token"
@@ -12,31 +11,19 @@ import (
 	"regexp"
 	"strings"
 
-	"golang.org/x/tools/go/loader"
 	"golang.org/x/tools/go/ssa"
 	"golang.org/x/tools/go/ssa/ssautil"
 )
 
 /////////
 /////////
-func LoadProgram(mainPkg string, debugInfo bool) *ssa.Program {
-	ldrCfg := loader.Config{
-		Build:       &build.Default,
-		AllowErrors: true,
-	}
-	ldrCfg.Import(mainPkg)
-
-	ldr, err := ldrCfg.Load()
-	if err != nil {
-		log.Fatal("Unable to load pkg: ", err)
-		return nil
-	}
-
+func LoadProgramSSA(mainPkg string, debugInfo bool) *ssa.Program {
+	aprg := LoadProgram(mainPkg)
 	buildMode := ssa.BuilderMode(0)
 	if debugInfo {
 		buildMode &= ssa.GlobalDebug
 	}
-	prog := ssautil.CreateProgram(ldr, buildMode)
+	prog := ssautil.CreateProgram(aprg, buildMode)
 	prog.Build()
 
 	return prog

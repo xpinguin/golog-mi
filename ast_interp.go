@@ -11,9 +11,13 @@ import (
 	"github.com/mndrix/golog/term"
 )
 
-func ParseToTerms(file string) (termsTrail []string) {
-	fset := token.NewFileSet()
-	f, _ := parser.ParseFile(fset, file, nil, 0 /*parser.Trace | parser.ParseComments*/)
+func FileToTerms(f *ast.File, fset *token.FileSet) (termsTrail []string) {
+	if f == nil {
+		panic("nil AST File to traverse")
+	}
+	if fset == nil {
+		fset = token.NewFileSet()
+	}
 
 	depth := 0 // increase - [, decrease - ]
 	ctr := 0   // preorder counter (nil's are ignored)
@@ -80,4 +84,11 @@ func ParseToTerms(file string) (termsTrail []string) {
 
 	//fmt.Printf("\nD: %d ;; CTR: %d\n\n", depth, ctr)
 	return trail
+}
+
+func ParseToTerms(file string) (termsTrail []string) {
+	fset := token.NewFileSet()
+	f, _ := parser.ParseFile(fset, file, nil, 0 /*parser.Trace | parser.ParseComments*/)
+
+	return FileToTerms(f, fset)
 }
