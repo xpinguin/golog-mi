@@ -1,26 +1,19 @@
 package mi
 
 import (
-	"fmt"
 	"go/ast"
 	"go/parser"
 	"go/token"
 	"reflect"
 	"strings"
-	"testing"
-
-	"github.com/mndrix/golog/term"
 
 	"github.com/iancoleman/strcase"
+	"github.com/mndrix/golog/term"
 )
 
-func TestInspectAST(t *testing.T) {
+func ParseToTerms(file string) (termsTrail []string) {
 	fset := token.NewFileSet()
-	f, _ := parser.ParseFile(fset, "testdata/squares.go", nil, 0 /*parser.Trace | parser.ParseComments*/)
-
-	/*env := map[ast.Node]*ast.Object{}
-	ns0 := map[string]*ast.Object{}
-	ns := map[string]ast.Node{}*/
+	f, _ := parser.ParseFile(fset, file, nil, 0 /*parser.Trace | parser.ParseComments*/)
 
 	depth := 0 // increase - [, decrease - ]
 	ctr := 0   // preorder counter (nil's are ignored)
@@ -85,7 +78,6 @@ func TestInspectAST(t *testing.T) {
 		trail[len(trail)-1] = "."
 	}
 
-	fmt.Printf("%v\n", strings.Join(trail, ""))
-	fmt.Printf("\nD: %d ;; CTR: %d\n\n", depth, ctr)
-	//spew.Dump(trace)
+	//fmt.Printf("\nD: %d ;; CTR: %d\n\n", depth, ctr)
+	return trail
 }
