@@ -1,7 +1,8 @@
-=== Go-AST Interpreter in Prolog (SWI) ===
-[**BOOTSTRAP PHASE INSOFAR**]
+**Go-AST Interpreter in Prolog (SWI, golog)**
 
-**TACTICAL**:
+***BOOTSTRAP PHASE INSOFAR***
+
+***TACTICAL***:
 	1. "Dual" metacircular Interpreter in both Go and [github.com/mndrix/golog].
 	
 	2. Interpreter is used on itself, term encoding will be tuned (along with my knowledge of Prolog, hopefully).
