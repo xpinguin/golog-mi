@@ -16,7 +16,7 @@ import (
 
 func TestInspectAST(t *testing.T) {
 	fset := token.NewFileSet()
-	f, _ := parser.ParseFile(fset, "golog_bridge.go" /*"testdata/squares.go"*/, nil, 0 /*parser.Trace | parser.ParseComments*/)
+	f, _ := parser.ParseFile(fset, "testdata/squares.go", nil, 0 /*parser.Trace | parser.ParseComments*/)
 
 	/*env := map[ast.Node]*ast.Object{}
 	ns0 := map[string]*ast.Object{}
@@ -32,6 +32,12 @@ func TestInspectAST(t *testing.T) {
 			if strings.TrimSpace(trail[len(trail)-1]) == "," {
 				trail = append(trail, trail[len(trail)-1])
 				trail[len(trail)-2] = "]"
+
+				if depth >= 1 && depth < 5 {
+					eol := strings.TrimSpace(trail[len(trail)-1])
+					eol += "\n" + strings.Repeat("  ", depth)
+					trail[len(trail)-1] = eol
+				}
 			}
 			return true
 		}
@@ -58,9 +64,13 @@ func TestInspectAST(t *testing.T) {
 				strcase.ToSnake(x.Kind.String()),
 				strings.Trim(x.Value, `"' `))
 		case *ast.Ident:
-			headTerm = Fntr_("id", x.Name)
-			if x.Obj != nil {
-				headTerm = Fntr_("ref", x.Obj.Name, headTerm)
+			if x.Obj == nil {
+				//headTerm = Fntr_("id0", x.Name)
+				headTerm = term.NewAtom(x.Name)
+			} else if x.Obj.Name != x.Name {
+				headTerm = Fntr_("idobj", x.Name, x.Obj.Name)
+			} else {
+				headTerm = Fntr_("id", x.Obj.Name)
 			}
 		default:
 			headTerm = term.NewAtom(astNodeTermName(n))
